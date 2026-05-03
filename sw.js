@@ -1,14 +1,27 @@
-const CACHE='reader-v18-start-reset-full';
+const CACHE='reader-v19-polished-controls';
 const ASSETS=['./index.html'];
 const PATCH_CSS=`
 <style id="control-layout-patch">
-.controlStrip{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
-.controlStrip #play{grid-column:1/-1!important;width:100%!important;justify-self:stretch!important}
-.controlStrip #reset{grid-column:1/-1!important;width:100%!important;justify-self:stretch!important;display:flex!important}
-.controlStrip #pause,.controlStrip #back,.controlStrip #next,.controlStrip #fullBtn{display:flex!important}
+.controlStrip{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;align-items:stretch!important}
+.controlStrip button{width:100%!important;min-height:46px!important;border-radius:15px!important}
+.controlStrip #play{grid-column:1/-1!important;order:1!important;width:100%!important;justify-self:stretch!important;font-size:17px!important}
+.controlStrip #reset{grid-column:1/-1!important;order:2!important;width:100%!important;justify-self:stretch!important;display:flex!important;font-size:16px!important}
+.controlStrip #pause{order:3!important;display:flex!important}
+.controlStrip #back{order:4!important;display:flex!important}
+.controlStrip #next{order:5!important;display:flex!important}
+.controlStrip #fullBtn{order:6!important;display:flex!important}
 .edgeControlsPatch{display:none!important}
-@media(max-width:420px){.controlStrip{grid-template-columns:repeat(2,1fr)!important}.controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}}
-@media(min-width:720px){.controlStrip{grid-template-columns:repeat(5,1fr)!important}.controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}}
+@media(max-width:420px){
+ .controlStrip{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+ .controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}
+ .controlStrip button{min-height:44px!important;font-size:14px!important}
+ .controlStrip #play{font-size:16px!important}
+}
+@media(min-width:720px){
+ .controlStrip{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important}
+ .controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}
+ .controlStrip button{min-height:48px!important}
+}
 </style>`;
 async function patchedIndex(req){
  const res=await fetch(req,{cache:'no-store'});
