@@ -1,13 +1,14 @@
-const CACHE='reader-v17-start-full';
+const CACHE='reader-v18-start-reset-full';
 const ASSETS=['./index.html'];
 const PATCH_CSS=`
 <style id="control-layout-patch">
 .controlStrip{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
 .controlStrip #play{grid-column:1/-1!important;width:100%!important;justify-self:stretch!important}
-.controlStrip #pause,.controlStrip #back,.controlStrip #next,.controlStrip #reset,.controlStrip #fullBtn{display:flex!important}
+.controlStrip #reset{grid-column:1/-1!important;width:100%!important;justify-self:stretch!important;display:flex!important}
+.controlStrip #pause,.controlStrip #back,.controlStrip #next,.controlStrip #fullBtn{display:flex!important}
 .edgeControlsPatch{display:none!important}
-@media(max-width:420px){.controlStrip{grid-template-columns:repeat(2,1fr)!important}.controlStrip #play{grid-column:1/-1!important}}
-@media(min-width:720px){.controlStrip{grid-template-columns:repeat(5,1fr)!important}.controlStrip #play{grid-column:1/-1!important}}
+@media(max-width:420px){.controlStrip{grid-template-columns:repeat(2,1fr)!important}.controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}}
+@media(min-width:720px){.controlStrip{grid-template-columns:repeat(5,1fr)!important}.controlStrip #play,.controlStrip #reset{grid-column:1/-1!important}}
 </style>`;
 async function patchedIndex(req){
  const res=await fetch(req,{cache:'no-store'});
